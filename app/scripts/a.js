@@ -1,16 +1,16 @@
 (function(){
   'use strict';
 
-  window.App = {};
-  App.Views = {};
-  App.Models = {};
-  App.Collections = {};
+  window.A = {};
+  A.Views = {};
+  A.Models = {};
+  A.Collections = {};
 
 //==============================================================================
                                 //Views
 //==============================================================================
 
-  App.Views.BlogPostForm = Backbone.View.extend({
+  A.Views.BlogPostForm = Backbone.View.extend({
     tagName: 'form',
     className: 'blog-post-form',
     template: function(){
@@ -45,7 +45,7 @@
                                 //Models
 //==============================================================================
 
-  App.Models.BlogPost = Backbone.Model.extend({
+  A.Models.BlogPost = Backbone.Model.extend({
     idAttribute: '_id'
   });
 
@@ -54,8 +54,8 @@
                               //Collections
 //==============================================================================
 
-  App.Collections.BlogPosts = Backbone.Collection.extend({
-    model: App.Models.BlogPost,
+  A.Collections.BlogPosts = Backbone.Collection.extend({
+    model: A.Models.BlogPost,
     url: '//tiny-pizza-server.herokuapp.com/collections/posts'
   });
 
@@ -63,10 +63,10 @@
                                 //Routers
 //==============================================================================
 
-  App.Router = Backbone.Router.extend({
+  A.Router = Backbone.Router.extend({
     initialize: function(){
-      new App.Views.BlogPostForm({
-        collection: new App.Collections.BlogPosts(),
+      new A.Views.BlogPostForm({
+        collection: new A.Collections.BlogPosts(),
         $template: $('#blog-post-form-template')
       });
     }
@@ -78,7 +78,7 @@
 //==============================================================================
 
   $(document).ready(function(){
-    new App.Router();
+    new A.Router();
     Backbone.history.start();
   });
 
