@@ -40,10 +40,12 @@
         zipcode: $('.zipcode').val()
       };
       this.$el.find('.error').remove();
+      this.$el.find('.invalid').removeClass('invalid');
       this.collection.create(person);
     },
-    error: function(model, message) {
-      this.$el.append('<div class="error">' + message + '</div>');
+    error: function(model, errorObject) {
+      this.$el.find(errorObject.errorField).addClass('invalid');
+      this.$el.append('<div class="error">' + errorObject.message + '</div>');
     }
   });
 
@@ -55,23 +57,46 @@
   B.Models.Person = Backbone.Model.extend({
     validate: function(attrs){
       if (!attrs.firstName)
-        return "First name is required";
+        return {
+          errorField: '.first-name',
+          message: "First name is required"
+        };
       if (!attrs.lastName)
-        return "Last name is required";
+        return {
+          errorField: '.last-name',
+          message: "Last name is required"
+        };
       if (!attrs.phone)
-        return "Phone number is required";
+        return {
+          errorField: '.phone',
+          message: "Phone number is required"
+        };
       if (attrs.phone.length < 10)
-        return "Please include your area code with your phone number";
+        return {
+          errorField: '.phone',
+          message: "Please include a valid 10 digit phone number"
+        };
       if (!attrs.address)
-        return "Address is required";
+        return {
+          errorField: '.address',
+          message: "Address is required"
+        };
       if (!attrs.address.match(/\d/))
-        return "Please include a valid address";
+        return {
+          errorField: '.address',
+          message: "Please include a valid address"
+        };
       if (!attrs.zipcode)
-        return "Zipcode is required";
+        return {
+          errorField: '.zipcode',
+          message: "Zipcode is required"
+        };
       var zipNum = +attrs.zipcode;
-      console.log(zipNum);
       if (attrs.zipcode.length < 5 || isNaN(zipNum))
-        return "Please enter a valid zipcode";
+        return {
+          errorField: '.zipcode',
+          message: "Please enter a valid zipcode"
+        };
     },
     idAttribute: '_id'
   });

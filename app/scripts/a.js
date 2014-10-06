@@ -56,7 +56,7 @@
 
   A.Collections.BlogPosts = Backbone.Collection.extend({
     model: A.Models.BlogPost,
-    url: '//tiny-pizza-server.herokuapp.com/collections/posts'
+    url: '//tiny-pizza-server.herokuapp.com/collections/posts',
   });
 
 //==============================================================================
