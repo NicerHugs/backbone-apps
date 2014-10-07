@@ -18,17 +18,18 @@
       this.$container = options.$container || $('main');
       this.$container.prepend(this.el);
       this.tag = options.tag;
+      this.render();
+      this.listenTo(this.collection, 'add', this.renderChild);
+    },
+    render: function() {
+      this.$el.empty();
       if (this.tag === 'any') {
         this.$el.append('<h2>Your bookmarked links</h2>');
       }
       else {
         this.$el.append('<h2>Your bookmarked links, tagged: ' + this.tag + '</h2>');
       }
-      this.render();
-      this.listenTo(this.collection, 'add', this.renderChild);
-    },
-    render: function() {
-      _.each(this.collection.models, this.renderChild);
+      this.collection.each( _.bind(this.renderChild, this));
     },
     renderChild: function(child) {
       if (this.tag === 'any' || child.get('tags').match(this.tag)) {
@@ -177,7 +178,7 @@
   D.Router = Backbone.Router.extend({
     initialize: function(){
       var linkList = new D.Collections.LinkList();
-      new D.Views.LinkList({
+      this.linkList = new D.Views.LinkList({
         collection: linkList,
         tag: 'any'
       });
@@ -192,11 +193,8 @@
       'tag/:param' : 'tags'
     },
     tags: function(tag) {
-      $('.link-list').remove();
-      new D.Views.LinkList({
-        collection: new D.Collections.LinkList(),
-        tag: tag
-      });
+      this.linkList.tag = tag;
+      this.linkList.render();
     }
   });
 
