@@ -24,12 +24,36 @@
   </head>
   <body>
 
+    <script type="text/template" id="todo-list-template">
+      <h2>The List</h2>
+      <a href="#/new">Add new</a>
+    </script>
+
+    <script type="text/template" id="list-item-template">
+      <input type="checkbox">
+      <h3><%= title %></h3>
+      <span><%= displayDate %></span>
+      <p><%= details %></p>
+      <a href="#/edit/<%= id %>">edit</a>
+      <a href="#" class="delete">delete</a>
+    </script>
+
+    <script type="text/template" id="form-template">
+      <input id="title" type="text" placeholder="Title" value="<%= title %>">
+      <textarea id="details" placeholder="details..."><%= details %></textarea>
+      <input id="date" type="date" value="<%= date %>" min="<%= moment(new Date()).format('YYYY-MM-DD') %>">
+      <input type="submit" value="save">
+      <a href="#">cancel</a>
+    </script>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
     <script src="../bower_components/backbone/backbone.js"></script>
+    <script src="../bower_components/firebase/firebase.js"></script>
+    <script src="../bower_components/backfire/backbone-firebase.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

@@ -151,7 +151,7 @@
         };
       if ($('.tag').val().match(/\s/))
         return {
-          message: 'tags should be separated by commas with no spaces',
+          message: 'tags should be separated by commas and no spaces',
           field: '.tag'
         };
     }
@@ -204,7 +204,7 @@
 //==============================================================================
 
   $(document).ready(function() {
-    new D.Router();
+    D.router = new D.Router();
     Backbone.history.start();
   });
 
