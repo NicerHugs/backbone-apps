@@ -22,6 +22,10 @@ body {
   @media (orientation: landscape) {
     overflow: scroll;
   }
+
+  @media (min-width: 480px) {
+    overflow: hidden;
+  }
 }
 
 h1 {
@@ -52,8 +56,8 @@ a {
 
 .back {
   position: fixed;
-  bottom: rem(20);
-  right: rem(20);
+  bottom: rem(50);
+  left: rem(10);
 }
 
 p {
@@ -77,8 +81,10 @@ p {
 
   @media (min-width: 480px) {
     background-image: url('../images/background.jpg');
-    background-position: 0 0;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0;
+    min-height: rem(900);
+    overflow: hidden;
   }
 }
 
@@ -90,11 +96,16 @@ main {
   background: $background;
   border-radius: rem(10);
   margin: 0 auto;
-  height: 400px;
+  height: rem(400);
+  max-width: 700px;
   overflow: scroll;
   padding: rem(10);
   text-shadow: #bcbcbc 0 0 4px;
   width: 75%;
+
+  @media (min-width: 480px) {
+    height: rem(500);
+  }
 }
 
 form {
