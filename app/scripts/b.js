@@ -46,7 +46,7 @@
     error: function(model, errorObject) {
       this.$el.find(errorObject.errorField).addClass('invalid');
       this.$el.find(errorObject.errorField).focus();
-      this.$el.append('<div class="error">' + errorObject.message + '</div>');
+      this.$el.find(errorObject.errorField).after('<div class="error">' + errorObject.message + '</div>');
     }
   });
 

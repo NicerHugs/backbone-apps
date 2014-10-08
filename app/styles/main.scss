@@ -1,7 +1,150 @@
  // Bourbon & Neat
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
+@import url(http://fonts.googleapis.com/css?family=PT+Serif);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+$sans: 'Open Sans', $helvetica;
+$serif: 'PT Serif', $georgia;
+$color: #fff;
+$background: rgba(255, 255, 255, .5);
+$inputs: rgba(255, 255, 255, .5);
+$buttons: #083754;
+
+body {
+  color: $color;
+  font-family: $sans;
+  font-size: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+
+  @media (orientation: landscape) {
+    overflow: scroll;
+  }
+}
+
+h1 {
+  font-family: $sans;
+  margin: 0;
+  padding: rem(30);
+  text-align: center;
+}
+
+h2 {
+  padding-left: rem(20);
+}
+
+h2,
+h3 {
+  margin-bottom: 0;
+}
+
+ul {
+  list-style-type: circle;
+  margin: 0;
+  padding: 0 rem(40);
+}
+
+a {
+  color: $color;
+}
+
+.back {
+  position: fixed;
+  bottom: rem(20);
+  right: rem(20);
+}
+
+p {
+  font-family: $serif;
+  font-size: 1rem;
+  margin: rem(5) 0;
+  padding: rem(20);
+}
 
 .invalid {
-  outline-color: red;
+  outline-color: #f00;
 }
+
+.container {
+  background-image: url('../images/background-sm.jpg');
+  background-position: rem(-200) rem(0);
+  background-size: cover;
+  min-height: rem(600);
+  position: relative;
+  width: 100%;
+
+  @media (min-width: 480px) {
+    background-image: url('../images/background.jpg');
+    background-position: 0 0;
+    background-size: cover;
+  }
+}
+
+header {
+  min-height: rem(60);
+}
+
+main {
+  background: $background;
+  border-radius: rem(10);
+  margin: 0 auto;
+  height: 400px;
+  overflow: scroll;
+  padding: rem(10);
+  text-shadow: #bcbcbc 0 0 4px;
+  width: 75%;
+}
+
+form {
+  padding: 0 rem(10) rem(20);
+
+  label {
+    display: block;
+  }
+
+  input {
+    -webkit-appearance: none;
+    background: $inputs;
+    border: darken($color, 50%) 1px;
+    border-radius: 2px;
+    height: rem(35);
+    padding: rem(5);
+    width: 100%;
+
+    &[type='submit'] {
+      background: $buttons;
+      border-radius: 2px;
+      height: rem(40);
+      margin-top: rem(30);
+    }
+  }
+
+  textarea {
+    background: $inputs;
+    border: darken($color, 50%) 1px;
+    border-radius: 2px;
+    height: rem(150);
+    width: 100%;
+  }
+
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  padding: rem(10);
+}
+
+
+
+
+
+
+
+
+
+
+
+//

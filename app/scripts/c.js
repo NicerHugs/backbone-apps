@@ -22,7 +22,7 @@
       this.listenTo(this.collection, 'add', this.renderChild);
     },
     render: function() {
-      _.each(this.collection.models, this.renderChild);
+      this.collection.each(_.bind(this.renderChild, this));
     },
     renderChild: function(child) {
       this.$el.append(this.template(child.attributes));
@@ -38,7 +38,9 @@
       this.render();
     },
     render: function() {
-      this.$el.html(this.model.get('body'));
+      this.$el.append('<h2>' + this.model.get('title') + '</h2>');
+      this.$el.append('<p>' + this.model.get('body') + '</p>');
+      this.$el.append('<a href="#" class="back">back</a>');
     }
   });
 
@@ -71,16 +73,22 @@
   C.Router = Backbone.Router.extend({
     initialize: function() {
       this.blogPosts = new C.Collections.BlogPosts();
-      new C.Views.PostList({
+      this.postsView = new C.Views.PostList({
         collection: this.blogPosts
       });
     },
     routes: {
+      ''             : 'list',
       'posts/:title' : 'post'
     },
+    list: function() {
+      this.postView.remove();
+      this.postsView.render();
+    },
     post: function(a) {
+      this.postsView.$el.empty();
       $('.post-view').remove();
-      new C.Views.PostView({
+      this.postView = new C.Views.PostView({
         model: this.blogPosts.get(a)
       });
     }

@@ -32,16 +32,16 @@
     <script type="text/template" id="list-item-template">
       <input type="checkbox">
       <h3><%= title %></h3>
-      <span><%= displayDate %></span>
+      <span>Due: <%= displayDate %></span>
       <p><%= details %></p>
       <a href="#/edit/<%= id %>">edit</a>
       <a href="#" class="delete">delete</a>
     </script>
 
     <script type="text/template" id="form-template">
-      <input id="title" type="text" placeholder="Title" value="<%= title %>">
-      <textarea id="details" placeholder="details..."><%= details %></textarea>
-      <input id="date" type="date" value="<%= date %>" min="<%= moment(new Date()).format('YYYY-MM-DD') %>">
+      <label name="title"><h3>Title: </h3></label><input name="title" id="title" type="text" placeholder="Title" value="<%= title %>">
+      <label name="details"><h3>Details: </h3></label><textarea name="details" id="details" placeholder="details..."><%= details %></textarea>
+      <label name="due"><h3>Due Date: </h3></label><input name="due" id="date" type="date" value="<%= date %>" min="<%= moment(new Date()).format('YYYY-MM-DD') %>">
       <input type="submit" value="save">
       <a href="#">cancel</a>
     </script>

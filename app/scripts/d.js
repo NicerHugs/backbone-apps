@@ -19,7 +19,7 @@
       this.$container.prepend(this.el);
       this.tag = options.tag;
       this.render();
-      this.listenTo(this.collection, 'add', this.renderChild);
+      this.listenTo(this.collection, 'sync', this.render);
     },
     render: function() {
       this.$el.empty();
@@ -67,7 +67,7 @@
       this.$container = options.$container || $('main');
       this.$container.append(this.el);
       this.$el.append('<h2>Your tags</h2>');
-      this.listenTo(this.collection, 'add', this.generateTagList);
+      this.listenTo(this.collection, 'sync', this.generateTagList);
     },
     render: function() {
       this.$el.find('li').remove();
@@ -128,15 +128,15 @@
 
   D.Models.Link = Backbone.Model.extend({
     idAttribute: '_id',
-    validate: function(){
-      if (!$('.url').val())
+    validate: function(attrs){
+      if (!attrs.url)
         return {
           message: 'a url is required',
           field: '.url'
         };
-      if (!$('.url').val().match('http'))
+      if (!attrs.url.match('.') || attrs.url.match(/\s/) || !attrs.url.match('http'))
         return {
-          message: 'please include a valid url',
+          message: 'please include a valid url, eg: http://google.com',
           field: '.url'
         };
       if (!$('.title').val())
@@ -151,7 +151,7 @@
         };
       if ($('.tag').val().match(/\s/))
         return {
-          message: 'tags should be separated by commas and no spaces',
+          message: 'tags should be single words and separated by commas with no spaces',
           field: '.tag'
         };
     }

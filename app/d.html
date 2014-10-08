@@ -25,6 +25,9 @@
   <body>
 
     <div class="container">
+      <header>
+        <h1>Link bookmarks</h1>
+      </header>
       <main>
       </main>
       <footer>
@@ -43,9 +46,10 @@
     </script>
 
     <script type="text/template" id="bookmark-form-template">
-      <input class="url" type="text" placeholder="http://example.com">
-      <input class="title" type="text" placeholder="Title">
-      <input class="tag" type="text" placeholder="tags">
+      <h2>Add a bookmark</h2>
+      <label name="URL"><h3>url:</h3></label><input name="URL" class="url" type="text" placeholder="http://example.com">
+      <label name="title"> <h3>Title: </h3></label><input name="title"  class="title" type="text" placeholder="Title">
+      <label name="tags" ><h3>Tags: </h3></label><input name="tags"  class="tag" type="text" placeholder="tags">
       <input type="submit">
     </script>
 

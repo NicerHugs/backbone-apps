@@ -25,6 +25,9 @@
   <body>
 
     <div class="container">
+      <header>
+        <h1>Create a user</h3>
+      </header>
       <main>
       </main>
       <footer>
@@ -33,11 +36,16 @@
     </div>
 
     <script type="text/template" id="person-form-template">
-      <input class="first-name" type="text" placeholder="First name">
-      <input class="last-name"type="text" placeholder="Last name">
-      <input class="phone"type="phone" placeholder="(xxx) xxx-xxxx">
-      <input class="address"type="text"  placeholder="Address">
-      <input class="zipcode"type="text" placeholder="Zipcode">
+      <label name="first-name"><h3>First Name:</h3></label>
+        <input name="first-name" class="first-name" type="text" placeholder="First name">
+      <label name="last-name"><h3>Last Name:</h3></label>
+        <input name="last-name" class="last-name"type="text" placeholder="Last name">
+      <label name="phone"><h3>Phone:</h3></label>
+        <input name="phone" class="phone"type="phone" placeholder="(xxx) xxx-xxxx">
+      <label name="address"><h3>Address:</h3></label>
+        <input name="address" class="address"type="text"  placeholder="Address">
+      <label name="zipcode"><h3>Zipcode:</h3></label>
+        <input name="zipcode" class="zipcode"type="text" placeholder="Zipcode">
       <input type="submit">
     </script>
 
